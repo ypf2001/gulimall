@@ -1,0 +1,14 @@
+server:
+  port: 30000
+
+spring:
+  application:
+    name: gulimall-third-party
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 1.117.229.165:8848
+  mail:
+    username: 2364555434@qq.com
+    password: axjeqajyskvzdjde
+    host: smtp.qq.com

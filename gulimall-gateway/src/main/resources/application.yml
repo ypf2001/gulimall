@@ -1,0 +1,83 @@
+spring:
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 1.117.229.165:8848
+      config:
+        server-addr: 1.117.229.165:8848
+        namespace: e367179a-14d0-405c-84ac-bce1b074c6d7
+    gateway:
+      routes:
+        - id: test_route
+          uri: http://www.baidu.com
+          predicates:
+            - Query=url,baidu
+        - id: qq_route
+          uri: https://www.qq.com
+          predicates:
+            - Query=url,qq
+        - id: product_route
+          uri: lb://gulimall-product
+          predicates:
+            - Path=/api/product/**
+          filters:
+            - RewritePath=/api(?<segment>.*),/$\{segment}
+        - id: ware
+          uri: lb://gulimall-ware
+          predicates:
+            - Path=/api/ware/**
+          filters:
+            - RewritePath=/api(?<segment>.*),/$\{segment}
+        - id: member_route
+          uri: lb://gulimall-member
+          predicates:
+            - Path=/api/member/**
+          filters:
+            - RewritePath=/api(?<segment>.*),/$\{segment}
+            #前端项目默认带api前缀
+        - id : third_party_route
+          uri: lb://gulimall-third-party
+          predicates:
+            - Path=/api/thirdParty/**
+          filters:
+            - RewritePath=/api/thirdParty(?<segment>.*),/$\{segment}
+        - id: admin_route
+          uri: lb://renren-fast
+          predicates:
+            - Path=/api/**
+          filters:
+            - RewritePath=/api(?<segment>.*),/renren-fast/$\{segment}
+        - id : gulimall_search_route
+          uri: lb://gulimall-search
+          predicates:
+            - Path=/searchService/**
+          filters:
+            - RewritePath=/searchService(?<segment>.*),/$\{segment}
+        - id : gulimall_auth_route
+          uri: lb://gulimall-auth-server
+          predicates:
+            - Path=/authService/**
+          filters:
+            - RewritePath=/authService(?<segment>.*),/$\{segment}
+        - id : gulimall_auth_route
+          uri: lb://gulimall-cart
+          predicates:
+            - Path=/cartService/**
+          filters:
+            - RewritePath=/cartService(?<segment>.*),/$\{segment}
+        - id : gulimall_order_route
+          uri: lb://gulimall-order
+          predicates:
+            - Path=/orderService/**
+          filters:
+            - RewritePath=/orderService(?<segment>.*),/$\{segment}
+        - id : gulimall_host_route
+          uri: lb://gulimall-product
+          predicates:
+            - Host=5441792f9r.zicp.fun
+            - Path=/**
+
+  application:
+    name: gulimall-gateway
+server:
+  port: 88

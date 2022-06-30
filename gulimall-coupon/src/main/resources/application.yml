@@ -1,0 +1,23 @@
+server:
+  port: 7000
+# mysql
+spring:
+  datasource:
+    type: com.alibaba.druid.pool.DruidDataSource
+    #MySQL配置
+    driverClassName: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://1.117.229.165:3306/gulimall_sms?useUnicode=true&useSSL=false&serverTimezone=Asia/Shanghai&allowPublicKeyRetrieval=true
+    username: root
+    password: 2364555434
+#    微服务
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 1.117.229.165:8848
+  application:
+    name: gulimall-coupon
+mybatis-plus:
+  global-config:
+    db-config:
+      id-type: auto
+  mapper-locations: classpath:/mapper/**/*.xml

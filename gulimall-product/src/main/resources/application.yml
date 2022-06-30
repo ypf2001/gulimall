@@ -1,0 +1,60 @@
+spring:
+  datasource:
+    username: root
+    password: 2364555434
+    url: jdbc:mysql://1.117.229.165:3306/gulimall_pms?allowPublicKeyRetrieval=true
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    hikari:
+      max-lifetime: 0
+      maximum-pool-size: 5
+      minimum-idle: 3
+  cloud:
+    nacos:
+      discovery:
+        server-addr: 1.117.229.165:8848
+  jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+  main:
+    allow-circular-references: true
+  application:
+    name: gulimall-product
+  thymeleaf:
+    cache: false
+  redis:
+    host: 1.117.229.165
+    port: 6379
+  cache:
+    type: redis
+    redis:
+      time-to-live: 3600000
+#      key-prefix: CACHE_
+      cache-null-values: true
+      use-key-prefix: true
+  session:
+    store-type: redis
+
+mybatis-plus:
+  mapper-locations: classpath:/mapper/**/*.xml
+  global-config:
+    db-config:
+      id-type: auto
+      logic-delete-value: 1
+      logic-not-delete-value: 0
+server:
+#  ssl:
+#    key-store: classpath:testhttps.keystore  #类路径下的自签证书
+#    key-alias: testhttps # 证书别名
+#    key-store-password: 2364555434 #证书密码
+#    key-store-type: JKS # 证书类型
+#    enabled: true  # 开启证书验证
+  port: 10000
+logging:
+  level:
+    com.ypf.gulimall: debug
+gulimall:
+  thread:
+    core-size: 20
+    max-size: 200
+    keep-alive-time: 10
+
+
